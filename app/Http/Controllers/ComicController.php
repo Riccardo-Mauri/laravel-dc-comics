@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comic;
 
 class ComicController extends Controller
 {
@@ -11,7 +12,8 @@ class ComicController extends Controller
      */
     public function index()
     {
-        //
+        $comics = Comic::all();
+        return view('comics.index', compact('comics'));
     }
 
     /**
@@ -19,7 +21,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -27,15 +29,24 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comic = new Comic();
+        $comic->fill($request->all());
+    
+        // Separare gli autori e i disegnatori dalla stringa
+        $comic->artists = implode('|', explode(',', $request->artists));
+        $comic->writers = implode('|', explode(',', $request->writers));
+    
+        $comic->save();
+    
+        return redirect()->route('comics.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Comic $comic)
     {
-        //
+        return view('comics.show', compact('comic'));
     }
 
     /**
