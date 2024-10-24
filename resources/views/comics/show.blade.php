@@ -3,7 +3,7 @@
 @section('content')
 <h1>{{ $comic->title }}</h1>
 <p><strong>Descrizione:</strong> {{ $comic->description }}</p>
-<p><strong>Prezzo:</strong> {{ $comic->price }}</p>
+<p><strong>Prezzo:</strong> {{ $comic->price }} <span>$</span></p>
 <img src="{{ $comic->thumb }}" alt="Immagine di {{ $comic->title }}">
 <p><strong>Serie:</strong> {{ $comic->series }}</p>
 <p><strong>Data di Vendita:</strong> {{ $comic->sale_date }}</p>

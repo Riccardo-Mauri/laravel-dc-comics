@@ -18,3 +18,4 @@ Route::get('/', [ComicController::class, 'index'])->name('home');
 
 // Altre route
 Route::resource('comics', ComicController::class);
+
